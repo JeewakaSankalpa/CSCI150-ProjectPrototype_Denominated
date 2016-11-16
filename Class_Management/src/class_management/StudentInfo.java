@@ -5,19 +5,48 @@
  */
 package class_management;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Kylef
  */
 public class StudentInfo extends javax.swing.JPanel {
-
-    /**
-     * Creates new form StudentInfo
-     */
-    public StudentInfo() {
+    //data stores the data from database table
+    Vector<Vector<String>> data;
+    //stores the header names for generating new table
+    Vector<String> header;
+    //used for adding to database table
+    PreparedStatement pst;
+    //for connection and adding to database
+    Connection conn;
+        
+    public StudentInfo() throws Exception {
+        DBClass dbengine = new DBClass();
+        data = dbengine.getStudent();
+        
+        header = new Vector<String>();
+        header.add("ID"); // ID
+        header.add("First Name"); // First name
+        header.add("Last Name"); // First name
+        header.add("Middle Inital"); // MI
+        header.add("Address 1"); // Address 1
+        header.add("Address 2"); // Address 2
+        header.add("Phone Number"); // Phone#
+        
+        
         initComponents();
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,14 +58,36 @@ public class StudentInfo extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextField2 = new javax.swing.JTextField();
+        samplePUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("samplePU").createEntityManager();
+        customerQuery = java.beans.Beans.isDesignTime() ? null : samplePUEntityManager.createQuery("SELECT c FROM Customer c");
+        customerList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : customerQuery.getResultList();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        sIDText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        sNameText = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         studentTable = new javax.swing.JTable();
+        addButton = new javax.swing.JButton();
+        addPanel = new javax.swing.JPanel();
+        pIDText = new javax.swing.JTextField();
+        pLNText = new javax.swing.JTextField();
+        pFNText = new javax.swing.JTextField();
+        pMIText = new javax.swing.JTextField();
+        pAddr1Text = new javax.swing.JTextField();
+        pAddr2Text = new javax.swing.JTextField();
+        pPhoneText = new javax.swing.JTextField();
+        pFNLabel = new javax.swing.JLabel();
+        pLNLabel = new javax.swing.JLabel();
+        pMILabel = new javax.swing.JLabel();
+        pAddr1Label = new javax.swing.JLabel();
+        pPhoneLabel = new javax.swing.JLabel();
+        pAddr2Label = new javax.swing.JLabel();
+        pIDLabel = new javax.swing.JLabel();
+        pAddButton = new javax.swing.JButton();
+        pDelButton = new javax.swing.JButton();
+        pCompButton = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextField2);
 
@@ -44,20 +95,22 @@ public class StudentInfo extends javax.swing.JPanel {
 
         jLabel2.setText("Name");
 
-        jButton1.setText("Search");
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Edit");
+        editButton.setText("Edit");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editButtonActionPerformed(evt);
+            }
+        });
 
         studentTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Student ID", "Student Name", "Address", "E-mail", "Phone"
-            }
+            data, header
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
@@ -70,63 +123,377 @@ public class StudentInfo extends javax.swing.JPanel {
                 return types [columnIndex];
             }
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
+            public boolean isCellEditable(int rowIndex, int columnIndex){
                 return canEdit [columnIndex];
             }
-        });
-        jScrollPane3.setViewportView(studentTable);
-        if (studentTable.getColumnModel().getColumnCount() > 0) {
-            studentTable.getColumnModel().getColumn(0).setResizable(false);
-            studentTable.getColumnModel().getColumn(1).setResizable(false);
-            studentTable.getColumnModel().getColumn(2).setResizable(false);
-            studentTable.getColumnModel().getColumn(3).setResizable(false);
-            studentTable.getColumnModel().getColumn(4).setResizable(false);
         }
+    );
+    jScrollPane3.setViewportView(studentTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1)
+    addButton.setText("Add");
+    addButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            addButtonActionPerformed(evt);
+        }
+    });
+
+    addPanel.setVisible(false);
+
+    pLNText.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            pLNTextActionPerformed(evt);
+        }
+    });
+
+    pPhoneText.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            pPhoneTextActionPerformed(evt);
+        }
+    });
+
+    pFNLabel.setText("First Name");
+
+    pLNLabel.setText("Last Name");
+
+    pMILabel.setText("MI");
+
+    pAddr1Label.setText("Address 1");
+
+    pPhoneLabel.setText("Phone#");
+
+    pAddr2Label.setText("Address 2");
+
+    pIDLabel.setText("ID#");
+
+    pAddButton.setText("Add");
+    pAddButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            pAddButtonActionPerformed(evt);
+        }
+    });
+
+    pDelButton.setText("Delete");
+    pDelButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            pDelButtonActionPerformed(evt);
+        }
+    });
+
+    pCompButton.setText("Complete");
+    pCompButton.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            pCompButtonActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout addPanelLayout = new javax.swing.GroupLayout(addPanel);
+    addPanel.setLayout(addPanelLayout);
+    addPanelLayout.setHorizontalGroup(
+        addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(addPanelLayout.createSequentialGroup()
+            .addGap(39, 39, 39)
+            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(pCompButton)
+                .addGroup(addPanelLayout.createSequentialGroup()
+                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addPanelLayout.createSequentialGroup()
+                            .addComponent(pIDLabel)
+                            .addGap(31, 31, 31))
+                        .addGroup(addPanelLayout.createSequentialGroup()
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(pAddButton)
+                                .addComponent(pIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(pFNText, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pFNLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(addPanelLayout.createSequentialGroup()
+                            .addComponent(pLNLabel)
+                            .addGap(43, 43, 43)
+                            .addComponent(pMILabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pAddr1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addPanelLayout.createSequentialGroup()
+                            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(pDelButton)
+                                .addGroup(addPanelLayout.createSequentialGroup()
+                                    .addComponent(pLNText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(pMIText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18)
+                            .addComponent(pAddr1Text, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(18, 18, 18)
+                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(pAddr2Text, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pAddr2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addPanelLayout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(pPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addPanelLayout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(pPhoneLabel)))))
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    addPanelLayout.setVerticalGroup(
+        addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(addPanelLayout.createSequentialGroup()
+            .addGap(15, 15, 15)
+            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(pAddr2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pLNLabel)
+                    .addComponent(pMILabel)
+                    .addComponent(pAddr1Label)
+                    .addComponent(pFNLabel)
+                    .addComponent(pIDLabel)
+                    .addComponent(pPhoneLabel)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(pIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pFNText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pLNText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pMIText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pAddr1Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pAddr2Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, 18)
+            .addGroup(addPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(pAddButton)
+                .addComponent(pDelButton)
+                .addComponent(pCompButton))
+            .addContainerGap(69, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+    this.setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(addPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
+        .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(sIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(sNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(searchButton)
+                    .addGap(18, 18, 18)
+                    .addComponent(editButton)
+                    .addGap(18, 18, 18)
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(0, 61, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editButton)
+                    .addComponent(searchButton)
+                    .addComponent(jLabel1)
+                    .addComponent(sIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(sNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(addButton))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(addPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(71, Short.MAX_VALUE))
+    );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        //allows table to be sorted
+        TableRowSorter<TableModel> rowSorter
+            = new TableRowSorter<>(studentTable.getModel());
+        studentTable.setRowSorter(rowSorter);
+        //takes input from id text field
+        String idText = sIDText.getText();
+        //takes input from name text field
+        String nameText = sNameText.getText();
+        //will return full table if no input is given
+        if ((idText.trim().length() == 0) && (nameText.trim().length() == 0) ) {
+            rowSorter.setRowFilter(null);
+        } 
+        //will return the list with matching ID#
+        else if((idText.trim().length() != 0) && (nameText.trim().length() == 0)) {
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + idText));
+        }
+        //Will return the list with matching Name
+        else if((idText.trim().length() == 0) && (nameText.trim().length() != 0)){
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + nameText));
+        }
+        //returns list of matching ID if given both inputs since ID should
+        //be unique
+        else{
+            rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + idText));
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+
+        
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void pPhoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pPhoneTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pPhoneTextActionPerformed
+
+    private void pLNTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pLNTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pLNTextActionPerformed
+    //When the add button is clicked on 
+    //new empty table will be generated
+    //a panel with all adding components will become visible
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        studentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+            },
+            new String [] {
+                "Student ID", "First Name", "Last Name", "MI", "Address 1",
+                "Address 2", "Phone Number"
+            }
+        ));
+        //displays a panel with adding compenents to table
+        addPanel.setVisible(true);
+        //disables all other buttons except for those on panel
+        searchButton.setEnabled(false);
+        editButton.setEnabled(false);
+        addButton.setEnabled(false);
+    }//GEN-LAST:event_addButtonActionPerformed
+    //adds new table to the database table
+    //once complete will generate a new table with the new additions from 
+    //the database table
+    private void pCompButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pCompButtonActionPerformed
+        //Generate a new connection
+        DBClass dbengine = new DBClass();
+        //tries to input the table info in to database
+        try {
+            int rows=studentTable.getRowCount();
+            conn = dbengine.dbConnection();
+            conn.setAutoCommit(false);
+            String queryco = "Insert into tblcheckout(CheckoutID,FirstName,LastName,MI,Address1, Address2, Phone) values (?,?,?,?,?,?,?)";
+            pst = conn.prepareStatement(queryco);
+            for(int row = 0; row<rows; row++)
+            {
+                String coitemID = (String)studentTable.getValueAt(row, 0);
+                String colFN = (String)studentTable.getValueAt(row, 1);
+                String colLN = (String)studentTable.getValueAt(row, 2);
+                String colMI = (String)studentTable.getValueAt(row, 3);
+                String colAddr1 = (String)studentTable.getValueAt(row, 4);
+                String colAddr2 = (String)studentTable.getValueAt(row, 5);
+                String colPhone = (String)studentTable.getValueAt(row, 6);
+                pst.setString(1, coitemID);
+                pst.setString(2, colFN);
+                pst.setString(3, colLN);
+                pst.setString(4, colMI);
+                pst.setString(5, colAddr1);
+                pst.setString(6, colAddr2);
+                pst.setString(7, colPhone);
+
+                pst.addBatch();
+            }
+            pst.executeBatch();
+            conn.commit();
+        } catch (Exception ex) {
+            Logger.getLogger(StudentInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //generating new a table with new database table
+        try {
+            data = dbengine.getStudent();
+        } catch (Exception ex) {
+            Logger.getLogger(StudentInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        header = new Vector<String>();
+        header.add("ID"); // ID
+        header.add("First Name"); // Last name
+        header.add("Last Name"); // Last name
+        header.add("MI"); // MI
+        header.add("Address 1"); // Address1
+        header.add("Address 2"); // Address2
+        header.add("Phone Number"); // Phone#
+        
+        studentTable.setModel(new javax.swing.table.DefaultTableModel(
+            data, header
+        ));
+        //makes the panel unvisible
+        addPanel.setVisible(false);
+        //reenables all buttons
+        searchButton.setEnabled(true);
+        editButton.setEnabled(true);
+        addButton.setEnabled(true);
+    }//GEN-LAST:event_pCompButtonActionPerformed
+    //When add  button in panel is clicked on the values entered in text fields
+    //will be inserted to table and clears out text fields
+    private void pAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pAddButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
+        model.addRow(new Object[]{pIDText.getText(),pFNText.getText(), pLNText.getText(),
+            pMIText.getText(),pAddr1Text.getText(), pAddr2Text.getText(), pPhoneText.getText()});
+        
+        pIDText.setText("");
+        pFNText.setText("");
+        pLNText.setText("");
+        pMIText.setText("");
+        pAddr1Text.setText("");
+        pAddr2Text.setText("");
+        pPhoneText.setText("");
+    }//GEN-LAST:event_pAddButtonActionPerformed
+    //When delete button is clicked on the selected rows will be removed from
+    //the table
+    private void pDelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pDelButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
+        int numRows = studentTable.getSelectedRows().length; 
+        for(int i=0; i<numRows ; i++ ){ 
+            model.removeRow(studentTable.getSelectedRow());
+        }
+    }//GEN-LAST:event_pDelButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addButton;
+    private javax.swing.JPanel addPanel;
+    private java.util.List<class_management.Customer> customerList;
+    private javax.persistence.Query customerQuery;
+    private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton pAddButton;
+    private javax.swing.JLabel pAddr1Label;
+    private javax.swing.JTextField pAddr1Text;
+    private javax.swing.JLabel pAddr2Label;
+    private javax.swing.JTextField pAddr2Text;
+    private javax.swing.JButton pCompButton;
+    private javax.swing.JButton pDelButton;
+    private javax.swing.JLabel pFNLabel;
+    private javax.swing.JTextField pFNText;
+    private javax.swing.JLabel pIDLabel;
+    private javax.swing.JTextField pIDText;
+    private javax.swing.JLabel pLNLabel;
+    private javax.swing.JTextField pLNText;
+    private javax.swing.JLabel pMILabel;
+    private javax.swing.JTextField pMIText;
+    private javax.swing.JLabel pPhoneLabel;
+    private javax.swing.JTextField pPhoneText;
+    private javax.swing.JTextField sIDText;
+    private javax.swing.JTextField sNameText;
+    private javax.persistence.EntityManager samplePUEntityManager;
+    private javax.swing.JButton searchButton;
     private javax.swing.JTable studentTable;
     // End of variables declaration//GEN-END:variables
 }

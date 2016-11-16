@@ -74,3 +74,31 @@ public class DBClass {
     }
 
 }
+    public Vector getStudent()throws Exception
+    {
+        Vector<Vector<String>> studVector = new Vector<Vector<String>>();
+
+        Connection conn = dbConnection();
+        PreparedStatement pre = conn.prepareStatement("select * from faculty");
+
+        ResultSet rs = pre.executeQuery();
+
+        while(rs.next())
+        {
+            Vector<String> stud = new Vector<String>();
+            stud.add(rs.getString(1)); //ID
+            stud.add(rs.getString(2)); //first name
+            stud.add(rs.getString(3)); //last name
+            stud.add(rs.getString(4)); //MI
+            stud.add(rs.getString(5)); //address 1
+            stud.add(rs.getString(6)); //address 2
+            stud.add(rs.getString(7)); //Mobile #
+            studVector.add(stud);
+        }
+
+        /*Close the connection after use (MUST)*/
+        if(conn!=null)
+            conn.close();
+
+        return studVector;
+    }
