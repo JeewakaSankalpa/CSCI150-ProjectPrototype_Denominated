@@ -1,0 +1,14 @@
+How To Run
+
+# To run the Program You Need to have create the Database on the Host Machine Using the SQL script provided in the 'Database.sql' file
+# you also need the MQTT Server running in the Host Machine. Go to MQTT folder navigate to the bin folder and run it.
+# Their is a login Password for the Desktop app. If you Enter 'Admin' as the UserName you don't Need a Password. Otherwise you need to Enter a faculty ID Stored in the Database along with the password.
+
+
+##Since Testing is still not Complete there are few bugs in it but almost all the Basic Components are Working. We have modified the this Submitted Code a bit so you will need to Enter the IP address for the MQTT Server Host on both the Desktop and Adndroid App when you try to mark Attendence.
+### Since we don't have a lot of data currently Stored in the Database use '111111' as the class ID if and when you are running the Attendence Collection part. The Program Assumes that each class will not Meet More than Once in a Day so if you try to enter two entries it won't Work.
+
+######
+Thank You 
+GROUP DENOMINATED
+######

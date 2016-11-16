@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Class Management</string>
+    <string name="manageClassesMenuItem">Manage Classes</string>
+    <string name="myIdMenuOption">My Id</string>
+    <string name="enrolledClassesMenuOption">Enrolled Classes</string>
+    <string name="title_activity_enrolled_classes">Class Enrollment</string>
+    <string name="classNameEditText">Class Name</string>
+    <string name="classIdEditText">Class Id</string>
+    <string name="classEntryDialogTitle">Class Entry</string>
+    <string name="ok">OK</string>
+    <string name="startTimeEditText">Start Time</string>
+    <string name="endTimeEditText">End Time</string>
+    <string name="invalidIdToast">Invalid ID Entered</string>
+    <string name="studentIdDialogTitle">Enter Your Student ID</string>
+    <string name="classStartTimeTextDefault">Start Time: </string>
+    <string name="classEndTimeTextDefault">Start Time: </string>
+</resources>

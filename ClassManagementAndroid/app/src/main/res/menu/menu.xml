@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:copmat="http://schemas.android.com/tools">
+
+    <item android:id="@+id/myIdMenuOption"
+        copmat:showAsAction="ifRoom"
+        android:title="@string/myIdMenuOption"/>
+    <item android:id="@+id/viewEnrolledClasses"
+        android:title="@string/enrolledClassesMenuOption"/>
+</menu>

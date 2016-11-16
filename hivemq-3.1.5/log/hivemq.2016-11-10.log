@@ -1,0 +1,12 @@
+2016-11-10 08:41:49,431 INFO  - Shutting down HiveMQ. Please wait, this could take a while...
+2016-11-10 11:17:08,354 INFO  - Starting HiveMQ Server
+2016-11-10 11:17:08,422 INFO  - HiveMQ version: 3.1.5
+2016-11-10 11:17:08,435 INFO  - HiveMQ home directory: /home/jeewaka/Desktop/home/jeewaka/Documents/hivemq-3.1.5
+2016-11-10 11:17:17,268 INFO  - Loaded Plugin HiveMQ JMX Metrics Reporting Plugin - v3.0.0
+2016-11-10 11:17:17,268 INFO  - Loaded Plugin HiveMQ Sys Topic Plugin - v3.0.0
+2016-11-10 11:17:17,302 INFO  - JMX Metrics Reporting started.
+2016-11-10 11:17:17,306 INFO  - Starting TCP listener on address 0.0.0.0 and port 1883
+2016-11-10 11:17:17,345 INFO  - Started TCP Listener on address 0.0.0.0 and on port 1883
+2016-11-10 11:17:17,345 INFO  - Started HiveMQ in 8962ms
+2016-11-10 11:17:20,801 INFO  - A new HiveMQ Version (3.2.0) is available. Visit http://www.hivemq.com/ for more details.
+2016-11-10 11:18:35,623 INFO  - No valid license file found. Using evaluation license, restricted to 25 connections.
