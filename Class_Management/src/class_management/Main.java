@@ -266,35 +266,95 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        bttCollect.setText("Collect");
+        jPanel1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel1FocusGained(evt);
+            }
+        });
+
+        bttCollect.setBackground(bttAttendance.getBackground());
+        bttCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Business-Collect-icon.png"))); // NOI18N
+        bttCollect.setToolTipText("Collect Attendance");
+        bttCollect.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                bttCollectFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bttCollectFocusLost(evt);
+            }
+        });
+        bttCollect.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttCollectMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttCollectMouseEntered(evt);
+            }
+        });
         bttCollect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCollectActionPerformed(evt);
             }
         });
 
-        bttAttendance.setText("Attendance");
+        bttAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Actions-view-pim-tasks-icon.png"))); // NOI18N
+        bttAttendance.setToolTipText("Attendance Records");
+        bttAttendance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttAttendanceMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttAttendanceMouseEntered(evt);
+            }
+        });
         bttAttendance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttAttendanceActionPerformed(evt);
             }
         });
 
-        bttSubject.setText("Subject");
+        bttSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Mimetypes-gnome-mime-application-rhythmbox-playlist-icon.png"))); // NOI18N
+        bttSubject.setToolTipText("Subject");
+        bttSubject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttSubjectMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttSubjectMouseEntered(evt);
+            }
+        });
         bttSubject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttSubjectActionPerformed(evt);
             }
         });
 
-        bttStudentInfo.setText("StudentInfo");
+        bttStudentInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Teacher-icon.png"))); // NOI18N
+        bttStudentInfo.setToolTipText("Student Info");
+        bttStudentInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttStudentInfoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttStudentInfoMouseEntered(evt);
+            }
+        });
         bttStudentInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttStudentInfoActionPerformed(evt);
             }
         });
 
-        bttFalculty.setText("Falculty");
+        bttFalculty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Teachers-icon.png"))); // NOI18N
+        bttFalculty.setToolTipText("Falculty");
+        bttFalculty.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bttFalcultyMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bttFalcultyMouseEntered(evt);
+            }
+        });
         bttFalculty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttFalcultyActionPerformed(evt);
@@ -310,29 +370,31 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(bttSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(bttStudentInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttCollect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttFalculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bttSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bttStudentInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bttCollect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bttAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bttFalculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblName))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bttAttendance, bttCollect, bttFalculty, bttStudentInfo, bttSubject});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bttCollect)
+                .addComponent(bttCollect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bttAttendance)
+                .addComponent(bttAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bttSubject)
+                .addComponent(bttSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bttStudentInfo)
+                .addComponent(bttStudentInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bttFalculty)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(bttFalculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblName)
                 .addGap(21, 21, 21))
         );
@@ -437,9 +499,15 @@ public class Main extends javax.swing.JFrame {
 
     private void bttStudentInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttStudentInfoActionPerformed
         // TODO add your handling code here:
-        JPanel stuInfoPanel = new StudentInfo();
-        jSplitPane1.setRightComponent(stuInfoPanel);
+        JPanel stuInfoPanel;
+        try {
+            stuInfoPanel = new StudentInfo();
+            jSplitPane1.setRightComponent(stuInfoPanel);
         stuInfoPanel.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_bttStudentInfoActionPerformed
 
     private void bttFalcultyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttFalcultyActionPerformed
@@ -456,6 +524,7 @@ public class Main extends javax.swing.JFrame {
         Connection con;
         ResultSet rs;
         String ID = userName.getText();
+        
         String pass = Arrays.toString(passWord.getPassword());
         if(ID.equals("Admin")){
             accept = true;
@@ -509,6 +578,62 @@ public class Main extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_LoginWindowClosed
+
+    private void bttCollectFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bttCollectFocusGained
+        //bttCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Business-Collect-iconLarge.png")));// TODO add your handling code here:
+    }//GEN-LAST:event_bttCollectFocusGained
+
+    private void bttCollectFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bttCollectFocusLost
+        //bttCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Business-Collect-icon.png")));
+    }//GEN-LAST:event_bttCollectFocusLost
+
+    private void bttCollectMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttCollectMouseEntered
+        bttCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Business-Collect-iconLarge.png")));
+    }//GEN-LAST:event_bttCollectMouseEntered
+
+    private void bttCollectMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttCollectMouseExited
+        bttCollect.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Business-Collect-icon.png")));
+    }//GEN-LAST:event_bttCollectMouseExited
+
+    private void bttAttendanceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAttendanceMouseEntered
+        bttAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Actions-view-pim-tasks-iconLarge.png"))); // NOI18N
+       
+    }//GEN-LAST:event_bttAttendanceMouseEntered
+
+    private void bttAttendanceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttAttendanceMouseExited
+        bttAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Actions-view-pim-tasks-icon.png"))); // NOI18N
+       
+    }//GEN-LAST:event_bttAttendanceMouseExited
+
+    private void bttSubjectMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttSubjectMouseEntered
+bttSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Mimetypes-gnome-mime-application-rhythmbox-playlist-iconLarge.png"))); // NOI18N        // TODO add your handling code here:
+    }//GEN-LAST:event_bttSubjectMouseEntered
+
+    private void bttSubjectMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttSubjectMouseExited
+       bttSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Mimetypes-gnome-mime-application-rhythmbox-playlist-icon.png"))); // NOI18N
+    }//GEN-LAST:event_bttSubjectMouseExited
+
+    private void bttStudentInfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttStudentInfoMouseExited
+        bttStudentInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Teacher-icon.png"))); // TODO add your handling code here:
+    }//GEN-LAST:event_bttStudentInfoMouseExited
+
+    private void bttStudentInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttStudentInfoMouseEntered
+       bttStudentInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Teacher-iconLarge.png")));         // TODO add your handling code here:
+    }//GEN-LAST:event_bttStudentInfoMouseEntered
+
+    private void bttFalcultyMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFalcultyMouseEntered
+        bttFalculty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Teachers-iconLarge.png"))); // NOI18N
+// TODO add your handling code here:
+    }//GEN-LAST:event_bttFalcultyMouseEntered
+
+    private void bttFalcultyMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bttFalcultyMouseExited
+        bttFalculty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/class_management/Teachers-icon.png"))); // NOI18N
+// TODO add your handling code here:
+    }//GEN-LAST:event_bttFalcultyMouseExited
+
+    private void jPanel1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1FocusGained
 
     /**
      * @param args the command line arguments

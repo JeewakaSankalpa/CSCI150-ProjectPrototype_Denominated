@@ -73,12 +73,12 @@ public class DBClass {
         return facVector;
     }
 
-}
+
     public Vector getStudent()throws Exception
     {
         Vector<Vector<String>> studVector = new Vector<Vector<String>>();
 
-        Connection conn = dbConnection();
+        Connection conn = (Connection) getdbConnection();
         PreparedStatement pre = conn.prepareStatement("select * from faculty");
 
         ResultSet rs = pre.executeQuery();
@@ -102,3 +102,4 @@ public class DBClass {
 
         return studVector;
     }
+}

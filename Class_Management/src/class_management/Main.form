@@ -414,6 +414,9 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel1">
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPanel1FocusGained"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
               <JSplitPaneConstraints position="left"/>
@@ -426,13 +429,11 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="bttSubject" min="-2" pref="97" max="-2" attributes="0"/>
-                              <Component id="bttStudentInfo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="bttCollect" alignment="0" max="32767" attributes="0"/>
-                              <Component id="bttAttendance" alignment="0" max="32767" attributes="0"/>
-                              <Component id="bttFalculty" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="bttSubject" linkSize="1" min="-2" pref="97" max="-2" attributes="0"/>
+                          <Component id="bttStudentInfo" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="bttCollect" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="bttAttendance" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="bttFalculty" linkSize="1" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -441,18 +442,18 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bttCollect" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bttAttendance" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bttSubject" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bttStudentInfo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bttFalculty" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="bttCollect" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="bttAttendance" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="bttSubject" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="bttStudentInfo" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="bttFalculty" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="lblName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
@@ -462,41 +463,71 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="bttCollect">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Collect"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection component="bttAttendance" name="background" type="property"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/class_management/Business-Collect-icon.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Collect Attendance"/>
               </Properties>
               <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bttCollectFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="bttCollectFocusLost"/>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttCollectMouseExited"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttCollectMouseEntered"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttCollectActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bttAttendance">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Attendance"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/class_management/Actions-view-pim-tasks-icon.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Attendance Records"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttAttendanceMouseExited"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttAttendanceMouseEntered"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttAttendanceActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bttSubject">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Subject"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/class_management/Mimetypes-gnome-mime-application-rhythmbox-playlist-icon.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Subject"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttSubjectMouseExited"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttSubjectMouseEntered"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttSubjectActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bttStudentInfo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="StudentInfo"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/class_management/Teacher-icon.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Student Info"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttStudentInfoMouseExited"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttStudentInfoMouseEntered"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttStudentInfoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bttFalculty">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Falculty"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/class_management/Teachers-icon.png"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Falculty"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttFalcultyMouseExited"/>
+                <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bttFalcultyMouseEntered"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bttFalcultyActionPerformed"/>
               </Events>
             </Component>

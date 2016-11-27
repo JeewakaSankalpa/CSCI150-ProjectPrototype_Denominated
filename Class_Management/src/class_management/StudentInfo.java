@@ -382,7 +382,7 @@ public class StudentInfo extends javax.swing.JPanel {
         //tries to input the table info in to database
         try {
             int rows=studentTable.getRowCount();
-            conn = dbengine.dbConnection();
+            conn = dbengine.getdbConnection();
             conn.setAutoCommit(false);
             String queryco = "Insert into tblcheckout(CheckoutID,FirstName,LastName,MI,Address1, Address2, Phone) values (?,?,?,?,?,?,?)";
             pst = conn.prepareStatement(queryco);
@@ -465,7 +465,7 @@ public class StudentInfo extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JPanel addPanel;
-    private java.util.List<class_management.Customer> customerList;
+    private java.util.List<class_management.studentInfo1> customerList;
     private javax.persistence.Query customerQuery;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel jLabel1;

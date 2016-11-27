@@ -15,12 +15,14 @@ public class Message {
     public final String classId;
     public final String studentId;
     public final String androidId;
+    public final String SecurityCode;
     
 
-    public Message(String classId, String studentId, String deviceId){
+    public Message(String classId, String studentId, String deviceId,String securityCode){
         this.classId = classId;
         this.studentId = studentId;
         this.androidId = deviceId;
+        this.SecurityCode = securityCode;
     }
     public String getStudentID(){
         return studentId;
@@ -30,6 +32,9 @@ public class Message {
     }
     public String getDeviceID(){
         return androidId;
+    }
+    public String getSecurityCode(){
+        return SecurityCode;
     }
 
 }
