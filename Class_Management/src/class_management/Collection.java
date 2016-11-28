@@ -210,6 +210,7 @@ public class Collection extends javax.swing.JFrame implements MqttCallback {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEndActionPerformed
+        bttStart.setEnabled(true);
         int rows = jTable1.getRowCount();
         try {
             DBClass db = new DBClass();
@@ -255,9 +256,10 @@ this.dispose();
     }//GEN-LAST:event_bttEndActionPerformed
 
     private void bttStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttStartActionPerformed
+bttStart.setEnabled(false);
         if (txtCID.getText().trim().length() == 6) {
             ClassID = txtCID.getText();
-
+            lblSecCode.setText("ABC3D");
             try {
 
                 try {
@@ -287,7 +289,7 @@ this.dispose();
                     }).run();
 
                     // subscriber program subscribes to the same topic to which all android devices are publishing
-                    client.subscribe("HOME/attendance");
+                    client.subscribe("HOME/"+txtCID.getText());
 
                     Thread.sleep(100);
 

@@ -12,29 +12,27 @@ package class_management;
 public class Message {
 
     
-    public final String classId;
+    //public final String classId;
     public final String studentId;
     public final String androidId;
-    public final String SecurityCode;
+    public final String SecCode;
     
 
-    public Message(String classId, String studentId, String deviceId,String securityCode){
-        this.classId = classId;
+    public Message(String studentId, String deviceId,String secCode){
+       // this.classId = classId;
         this.studentId = studentId;
         this.androidId = deviceId;
-        this.SecurityCode = securityCode;
+        this.SecCode = secCode;
     }
     public String getStudentID(){
         return studentId;
     }
-    public String getClassID(){
-        return classId;
-    }
+    
     public String getDeviceID(){
         return androidId;
     }
     public String getSecurityCode(){
-        return SecurityCode;
+        return SecCode;
     }
 
 }
