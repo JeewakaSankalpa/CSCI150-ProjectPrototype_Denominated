@@ -40,7 +40,7 @@ public class MqttHandler implements MqttCallback {
     //android"10.0.0.17 device publishes to this topic
     private static String TOPIC_ATTENDANCE = "HOME/attendance";
     private static String TOPIC = "HOME/test";
-    private static String TOPIC1 = "HOME/1111";
+    private static String TOPIC1 = "HOME/";
     private MqttHandler(Context context) {
         this.context = context;
     }
@@ -149,7 +149,7 @@ public class MqttHandler implements MqttCallback {
             mqttMsg.setRetained(false);
             mqttMsg.setQos(2);
             try {
-                mqttClient.publish(topic, mqttMsg);
+                mqttClient.publish(TOPIC1+topic, mqttMsg);
             } catch (Exception e) {
 
             }

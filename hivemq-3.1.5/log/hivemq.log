@@ -1,12 +1,12 @@
-2016-11-15 04:16:43,799 INFO  - Starting HiveMQ Server
-2016-11-15 04:16:43,851 INFO  - HiveMQ version: 3.1.5
-2016-11-15 04:16:43,853 INFO  - HiveMQ home directory: /home/jeewaka/Desktop/home/jeewaka/Documents/hivemq-3.1.5
-2016-11-15 04:16:51,050 INFO  - Loaded Plugin HiveMQ JMX Metrics Reporting Plugin - v3.0.0
-2016-11-15 04:16:51,051 INFO  - Loaded Plugin HiveMQ Sys Topic Plugin - v3.0.0
-2016-11-15 04:16:51,067 INFO  - JMX Metrics Reporting started.
-2016-11-15 04:16:51,071 INFO  - Starting TCP listener on address 0.0.0.0 and port 1883
-2016-11-15 04:16:51,090 INFO  - Started TCP Listener on address 0.0.0.0 and on port 1883
-2016-11-15 04:16:51,091 INFO  - Started HiveMQ in 7270ms
-2016-11-15 04:17:03,467 INFO  - A new HiveMQ Version (3.2.0) is available. Visit http://www.hivemq.com/ for more details.
-2016-11-15 04:18:11,752 INFO  - No valid license file found. Using evaluation license, restricted to 25 connections.
-2016-11-15 05:09:39,552 INFO  - Shutting down HiveMQ. Please wait, this could take a while...
+2016-11-27 21:36:17,413 INFO  - Starting HiveMQ Server
+2016-11-27 21:36:17,457 INFO  - HiveMQ version: 3.1.5
+2016-11-27 21:36:17,468 INFO  - HiveMQ home directory: /home/jeewaka/Documents/Project FInal/CS150 Project/hivemq-3.1.5
+2016-11-27 21:36:27,492 INFO  - Loaded Plugin HiveMQ JMX Metrics Reporting Plugin - v3.0.0
+2016-11-27 21:36:27,493 INFO  - Loaded Plugin HiveMQ Sys Topic Plugin - v3.0.0
+2016-11-27 21:36:27,518 INFO  - JMX Metrics Reporting started.
+2016-11-27 21:36:27,522 INFO  - Starting TCP listener on address 0.0.0.0 and port 1883
+2016-11-27 21:36:27,576 INFO  - Started TCP Listener on address 0.0.0.0 and on port 1883
+2016-11-27 21:36:27,576 INFO  - Started HiveMQ in 10153ms
+2016-11-27 21:36:28,889 INFO  - A new HiveMQ Version (3.2.1) is available. Visit http://www.hivemq.com/ for more details.
+2016-11-27 21:42:35,902 INFO  - No valid license file found. Using evaluation license, restricted to 25 connections.
+2016-11-27 22:27:10,410 INFO  - Shutting down HiveMQ. Please wait, this could take a while...

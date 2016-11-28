@@ -61,6 +61,14 @@ public class AttendanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendance);
         Button sendAttendanceButton = (Button) findViewById(R.id.sendAttendanceButton);
         final Spinner classListSpinner = (Spinner) findViewById(R.id.classListSpinner);
+        final EditText secCode = (EditText) findViewById(R.id.txtSecurityCode);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.classids, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        classListSpinner.setAdapter(adapter);
         Button viewAttendanceRecords = (Button) findViewById(R.id.viewAllAttendanceRecordsButton);
         sendAttendanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,8 +77,8 @@ public class AttendanceActivity extends AppCompatActivity {
                 if (true) {
                     String deviceId = Settings.Secure.ANDROID_ID;
                     String studentId = StudentInformation.getStoredId(getApplicationContext());
-                    String classId = "nothing yet";
-
+                    String classId = (String) classListSpinner.getSelectedItem();
+                    String Sec = secCode.getText().toString();
                     /***********************************
 
 
@@ -79,8 +87,8 @@ public class AttendanceActivity extends AppCompatActivity {
 
 
                     ************************************/
-                    Message m = new Message(classId, studentId, deviceId);
-                    mqtt.publish(m);
+                    Message m = new Message(Sec, studentId, deviceId);
+                    mqtt.publish(m,classId);
                     //MQTT Stuff Goes Here, use above 2 variables and spinner item
                     Toast.makeText(getApplicationContext(), "Attendance Sent Successfully", Toast.LENGTH_SHORT).show();
                 } else {

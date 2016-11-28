@@ -14,4 +14,15 @@
     <string name="studentIdDialogTitle">Enter Your Student ID</string>
     <string name="classStartTimeTextDefault">Start Time: </string>
     <string name="classEndTimeTextDefault">Start Time: </string>
+    <string-array name="classids">
+    <item>123456</item>
+    <item>111111</item>
+    <item>222222</item>
+    <item>333333</item>
+    <item>444444</item>
+    <item>777777</item>
+    <item>888888</item>
+    <item>999999</item>
+</string-array>
 </resources>
+

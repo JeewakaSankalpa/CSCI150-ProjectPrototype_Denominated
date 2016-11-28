@@ -8,15 +8,27 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.nocompany.cs150.classmanagement.AttendanceActivity"
     android:orientation="vertical"
-    tools:context="com.nocompany.cs150.classmanagement.AttendanceActivity">
+    android:baselineAligned="false"
+    android:weightSum="1">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Type the Security Code"
+        android:ems="10"
+        android:id="@+id/txtSecurityCode" />
 
     <Spinner
         android:id="@+id/classListSpinner"
         android:layout_height="50dp"
         android:layout_width="fill_parent"
         android:layout_margin="30dp"
-        android:textColor = "@color/Black" />
+        android:textColor = "@color/Black"
+        android:spinnerMode="dropdown" />
 
     <Button
         android:id="@+id/sendAttendanceButton"
@@ -24,16 +36,19 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Send"/>
-    <Button
-        android:id="@+id/viewAttendanceRecordsButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Attendance Records"/>
+
     <Button
         android:id="@+id/viewAllAttendanceRecordsButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="All Attendance Records"/>
+
+    <Button
+android:id="@+id/viewAttendanceRecordsButton"
+android:layout_width="198dp"
+android:layout_height="wrap_content"
+android:layout_gravity="center"
+android:text="Attendance Records"/>
+
 </LinearLayout>
