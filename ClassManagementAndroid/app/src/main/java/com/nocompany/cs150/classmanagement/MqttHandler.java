@@ -40,7 +40,7 @@ public class MqttHandler implements MqttCallback {
     //android"10.0.0.17 device publishes to this topic
     private static String TOPIC_ATTENDANCE = "HOME/attendance";
     private static String TOPIC = "HOME/test";
-    private static String TOPIC1 = "HOME/";
+    private static String TOPIC1 = "HOME/1111";
     private MqttHandler(Context context) {
         this.context = context;
     }
@@ -72,20 +72,19 @@ public class MqttHandler implements MqttCallback {
     }
 
     public void connect(IMqttActionListener listener,String ip) throws MqttException {
-        String iotPort = "1883";
-        //q.emqtt.com:1883 is an online mqtt broker
-        String iotHost =ip ;
-        //client id for communication
-        String iotClientId = "d:"+ORG+":"+DEVICE_TYPE+":"+DEVICE_ID + ":" + UUID.randomUUID().toString();
-
-        //complete connection url
-        String connectionUri = "tcp://" + iotHost + ":" + iotPort;
         if (!isConnected()) {
 
 
             //standard port for unsecured mqtt broker
+            String iotPort = "1883";
+            //q.emqtt.com:1883 is an online mqtt broker
+            String iotHost =ip ;
+            //client id for communication
+            String iotClientId = "d:"+ORG+":"+DEVICE_TYPE+":"+DEVICE_ID + ":" + UUID.randomUUID().toString();
 
-           // client = new MqttClient(connectionUri,UUID.randomUUID().toString());
+            //complete connection url
+            String connectionUri = "tcp://" + iotHost + ":" + iotPort;
+            //client = new MqttClient(connectionUri,UUID.randomUUID().toString());
             // client.setCallback(this);
             if (mqttClient != null) {
                 mqttClient.unregisterResources();
@@ -101,9 +100,7 @@ public class MqttHandler implements MqttCallback {
 
             try {
                 mqttClient.connect(options, context, listener);
-                Toast.makeText(context, "Connected",
-                        Toast.LENGTH_LONG).show();
-                //mqttClient.connect();;
+                // client.connect();;
                 //mqttClient.subscribe("HOME/1111",0,context,listener);
             } catch (MqttException e) {
                 Log.e("mqtt", e.getMessage());
@@ -136,7 +133,6 @@ public class MqttHandler implements MqttCallback {
 
             }
         }else{
-
             Toast.makeText(context, "No Connection Found. Restart the App",
                     Toast.LENGTH_LONG).show();
         }
@@ -149,16 +145,16 @@ public class MqttHandler implements MqttCallback {
             mqttMsg.setRetained(false);
             mqttMsg.setQos(2);
             try {
-                mqttClient.publish(TOPIC1+topic, mqttMsg);
+                mqttClient.publish("HOME/"+topic, mqttMsg);
             } catch (Exception e) {
 
             }
         }else{
-
             Toast.makeText(context, "No Connection Found. Restart the App",
                     Toast.LENGTH_LONG).show();
         }
     }
+
     public boolean isConnected() {
         if (mqttClient != null) {
             return mqttClient.isConnected();

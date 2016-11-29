@@ -256,8 +256,9 @@ this.dispose();
     }//GEN-LAST:event_bttEndActionPerformed
 
     private void bttStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttStartActionPerformed
-bttStart.setEnabled(false);
+
         if (txtCID.getText().trim().length() == 6) {
+            bttStart.setEnabled(false);
             ClassID = txtCID.getText();
             lblSecCode.setText("ABC3D");
             try {
@@ -311,6 +312,8 @@ bttStart.setEnabled(false);
                 Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex);
             }
             
+        }else{
+            JOptionPane.showMessageDialog(this, "Class ID does not MAtch!", "ID Mismatch", HEIGHT);
         }
     }//GEN-LAST:event_bttStartActionPerformed
 
@@ -398,7 +401,7 @@ bttStart.setEnabled(false);
             jTable1.setModel(tm);
             jTable1.setVisible(true);
             }else{
-                txtFlagged.setText(StudentID+"/n");
+                txtFlagged.setText(txtFlagged.getText()+StudentID+"\n");
             }
             
         }

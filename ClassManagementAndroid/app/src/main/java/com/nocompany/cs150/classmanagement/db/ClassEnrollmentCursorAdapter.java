@@ -30,19 +30,12 @@ public class ClassEnrollmentCursorAdapter extends CursorAdapter {
         TextView recordIdText = (TextView) view.findViewById(R.id.classTable_id);
         TextView classNameText = (TextView) view.findViewById(R.id.classNameListItemComponent);
         TextView classIdText = (TextView) view.findViewById(R.id.classIdListItemComponent);
-        TextView classStartText = (TextView) view.findViewById(R.id.classStartTimeListItemComponent);
-        TextView classEndText = (TextView) view.findViewById(R.id.classEndTimeListItemComponent);
         // Extract properties from cursor
         String recordId = Long.toString(c.getLong(c.getColumnIndexOrThrow(ClassInformation._ID)));
         String className = c.getString(c.getColumnIndexOrThrow(ClassInformation.COLUMN_COURSE_NAME));
         String classId = Integer.toString(c.getInt(c.getColumnIndexOrThrow(ClassInformation.COLUMN_COURSE_ID)));
-        String startTime = c.getString(c.getColumnIndexOrThrow(ClassInformation.COLUMN_START_TIME));
-        String endTime = c.getString(c.getColumnIndexOrThrow(ClassInformation.COLUMN_END_TIME));
-
         recordIdText.setText(recordId);
         classNameText.setText(className);
         classIdText.setText(classId);
-        classStartText.setText(startTime);
-        classEndText.setText(endTime);
     }
 }

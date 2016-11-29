@@ -18,8 +18,6 @@ public final class StudentInformationContract {
         public static final String TABLE_NAME = "courses";
         public static final String COLUMN_COURSE_NAME = "course_name";
         public static final String COLUMN_COURSE_ID = "course_id";
-        public static final String COLUMN_START_TIME = "start_time";
-        public static final String COLUMN_END_TIME = "end_time";
     }
 
     public static class AttendanceRecords implements BaseColumns{

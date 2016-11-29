@@ -7,6 +7,7 @@
         android:id="@+id/classTable_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:hint="id"/>
     <EditText
         android:id="@+id/classNameEditText"
@@ -21,21 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_width="200dp"
         android:layout_gravity="center"
+        android:inputType="number"
         android:hint="@string/classIdEditText">
-    </EditText>
-
-    <EditText
-        android:id="@+id/startTimeEditText"
-        android:layout_height="wrap_content"
-        android:layout_width="200dp"
-        android:layout_gravity="center"
-        android:hint="@string/startTimeEditText" />
-
-    <EditText
-        android:id="@+id/endTimeEditText"
-        android:layout_height="wrap_content"
-        android:layout_width="200dp"
-        android:layout_gravity="center"
-        android:hint="@string/endTimeEditText">
     </EditText>
 </LinearLayout>

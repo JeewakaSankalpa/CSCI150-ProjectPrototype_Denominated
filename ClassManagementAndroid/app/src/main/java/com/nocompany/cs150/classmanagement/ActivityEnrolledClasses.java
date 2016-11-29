@@ -46,7 +46,7 @@ public class ActivityEnrolledClasses extends AppCompatActivity {
     //Too simple? Just reduce to argument in function call?
     private View defaultClassEntryDialog() {
         LayoutInflater inflater = this.getLayoutInflater();
-        return inflater.inflate(R.layout.class_entry, null);
+        return inflater.inflate(R.layout.class_entry_dialog, null);
     }
 
     private View editClassEntryDialog(View listItem) {
@@ -56,17 +56,10 @@ public class ActivityEnrolledClasses extends AppCompatActivity {
         String recordId = ((TextView) listItem.findViewById(R.id.classTable_id)).getText().toString();
         String className = ((TextView) listItem.findViewById(R.id.classNameListItemComponent)).getText().toString();
         String classId = ((TextView) listItem.findViewById(R.id.classIdListItemComponent)).getText().toString();
-        ;
-        String classStart = ((TextView) listItem.findViewById(R.id.classStartTimeListItemComponent)).getText().toString();
-        ;
-        String classEnd = ((TextView) listItem.findViewById(R.id.classEndTimeListItemComponent)).getText().toString();
-        ;
 
         ((TextView) classEntryDialog.findViewById(R.id.classTable_id)).setText(recordId);
         ((EditText) classEntryDialog.findViewById(R.id.classNameEditText)).setText(className);
         ((EditText) classEntryDialog.findViewById(R.id.classIdEditText)).setText(classId);
-        ((EditText) classEntryDialog.findViewById(R.id.startTimeEditText)).setText(classStart);
-        ((EditText) classEntryDialog.findViewById(R.id.endTimeEditText)).setText(classEnd);
         return classEntryDialog;
 
     }
@@ -91,9 +84,7 @@ public class ActivityEnrolledClasses extends AppCompatActivity {
                 }
                 String className = ((EditText) alertDialogView.findViewById(R.id.classNameEditText)).getText().toString();
                 int classId = Integer.parseInt(((EditText) alertDialogView.findViewById(R.id.classIdEditText)).getText().toString());
-                String startTime = ((EditText) alertDialogView.findViewById(R.id.startTimeEditText)).getText().toString();
-                String endTime = ((EditText) alertDialogView.findViewById(R.id.endTimeEditText)).getText().toString();
-                db.writeClass(recordId, className, classId, startTime, endTime);
+                db.writeClass(recordId, className, classId);
                 updateListView();
                 dialog.dismiss();
             }

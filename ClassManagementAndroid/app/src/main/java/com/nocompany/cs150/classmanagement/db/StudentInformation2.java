@@ -21,13 +21,11 @@ public class StudentInformation2 {
     }
 
     //Writes new class or updates existing record if recordId is not -1
-    public void writeClass(Long recordId,String className, int classId, String startTime, String endTime){
+    public void writeClass(Long recordId,String className, int classId){
         SQLiteDatabase writer = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(StudentInformationContract.ClassInformation.COLUMN_COURSE_NAME,className);
         values.put(StudentInformationContract.ClassInformation.COLUMN_COURSE_ID,classId);
-        values.put(StudentInformationContract.ClassInformation.COLUMN_START_TIME,startTime);
-        values.put(StudentInformationContract.ClassInformation.COLUMN_END_TIME,endTime);
         if(recordId >= 0){
             int i = writer.update(StudentInformationContract.ClassInformation.TABLE_NAME,values, StudentInformationContract.ClassInformation._ID + "=" + recordId,null);
             System.out.println("Does this even get called?");

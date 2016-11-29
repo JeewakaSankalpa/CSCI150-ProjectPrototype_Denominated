@@ -23,9 +23,7 @@ public class StudentInformationDBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + StudentInformationContract.ClassInformation.TABLE_NAME + " (" +
                     StudentInformationContract.ClassInformation._ID + INT_PRIMARY_KEY +
                     StudentInformationContract.ClassInformation.COLUMN_COURSE_NAME + TEXT_TYPE + COMMA_SEP +
-                    StudentInformationContract.ClassInformation.COLUMN_COURSE_ID + INT_TYPE + COMMA_SEP +
-                    StudentInformationContract.ClassInformation.COLUMN_START_TIME + TEXT_TYPE + COMMA_SEP +
-                    StudentInformationContract.ClassInformation.COLUMN_END_TIME + TEXT_TYPE + ")";
+                    StudentInformationContract.ClassInformation.COLUMN_COURSE_ID + INT_TYPE +")";
 
 
     public static synchronized StudentInformationDBHelper getInstance(Context context) {

@@ -131,10 +131,10 @@ public class Attendance extends javax.swing.JPanel {
                 ResultSet SIDs = pst.executeQuery();
                 SIDs.next();
                 //get the dates and make the table
-                System.out.println("Test");
+                //System.out.println("Test");
                 pst2 = con.prepareStatement("SELECT * FROM ClassManager.Attendance where Class_Classs_ID = "+txtCID.getText()+" AND Student_Student_ID = "+SIDs.getString(1)+" ORDER BY Date");
                     RecordLIne = pst2.executeQuery();
- System.out.println("Test22");
+ //System.out.println("Test22");
                     Vector<String> Dates = new Vector<String>();
                     Dates.add("Student ID");
                     while (RecordLIne.next()) {
@@ -148,7 +148,7 @@ public class Attendance extends javax.swing.JPanel {
                 
                 SIDs = pst.executeQuery();
                 Vector<Vector<String>> Records = new Vector<Vector<String>>();
-                    System.out.println("Test1");
+                  //  System.out.println("Test1");
                 while (SIDs.next()) {
                     pst2 = con.prepareStatement("SELECT * FROM ClassManager.Attendance where Class_Classs_ID = "+txtCID.getText()+" AND Student_Student_ID = "+SIDs.getString(1)+" ORDER BY Date");
                     RecordLIne = pst2.executeQuery();

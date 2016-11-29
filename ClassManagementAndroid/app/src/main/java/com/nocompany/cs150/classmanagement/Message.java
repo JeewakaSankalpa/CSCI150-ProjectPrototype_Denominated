@@ -5,9 +5,11 @@ public class Message {
     public final String studentId;
     public final String androidId;
     public final String SecCode;
-    public Message(String SecCode, String studentId, String deviceId){
-        this.SecCode = SecCode;
+
+    public Message(String studentId, String deviceId, String attendanceCode){
+
         this.studentId = studentId;
         this.androidId = deviceId;
+        this.SecCode = attendanceCode;
     }
 }
